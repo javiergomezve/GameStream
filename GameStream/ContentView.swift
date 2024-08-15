@@ -9,16 +9,37 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        ZStack {
+            Color(red: 18/255, green: 31/255, blue: 61/255, opacity: 1.0).ignoresSafeArea()
+            
+            VStack {
+                Image("appLogo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250)
+                
+                SignInAndSignUpView()
+            }
         }
-        .padding()
     }
 }
 
-#Preview {
-    ContentView()
+struct SignInAndSignUpView: View {
+    var body: some View {
+        HStack {
+            Text("Iniciar Sesion")
+            Text("Registro")
+        }
+        .foregroundColor(.white)
+        .textCase(/*@START_MENU_TOKEN@*/.uppercase/*@END_MENU_TOKEN@*/)
+    }
+}
+
+struct ContentView_Preview: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+        
+        Image("pantalla1").resizable()
+    }
 }
