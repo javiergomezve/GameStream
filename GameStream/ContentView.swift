@@ -18,6 +18,7 @@ struct ContentView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 250)
+                    .padding(.bottom, 50)
                 
                 SignInAndSignUpView()
             }
@@ -26,13 +27,47 @@ struct ContentView: View {
 }
 
 struct SignInAndSignUpView: View {
+    @State var showSignInForm = true
+    
     var body: some View {
-        HStack {
-            Text("Iniciar Sesion")
-            Text("Registro")
+        VStack {
+            HStack {
+                Spacer()
+                
+                Button("sign in") {
+                    self.showSignInForm = true
+                }.foregroundColor(showSignInForm ? .white : .gray)
+                
+                Spacer()
+                
+                Button("sign up") {
+                    self.showSignInForm = false
+                }.foregroundColor(!showSignInForm ? .white : .gray)
+                
+                Spacer()
+            }
+            .textCase(.uppercase)
+            
+            Spacer(minLength: 42)
+            
+            if showSignInForm {
+                SignInFrom()
+            } else {
+                SignUpForm()
+            }
         }
-        .foregroundColor(.white)
-        .textCase(/*@START_MENU_TOKEN@*/.uppercase/*@END_MENU_TOKEN@*/)
+    }
+}
+
+struct SignInFrom: View {
+    var body: some View {
+        Text("Sign In Form")
+    }
+}
+
+struct SignUpForm: View {
+    var body: some View {
+        Text("Sing Up Form")
     }
 }
 
