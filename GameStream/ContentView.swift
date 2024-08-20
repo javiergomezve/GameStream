@@ -60,8 +60,52 @@ struct SignInAndSignUpView: View {
 }
 
 struct SignInFrom: View {
+    @State var email = ""
+    @State var password = ""
+    
     var body: some View {
-        Text("Sign In Form")
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text("Email:")
+                    .foregroundColor(.darkCian)
+                    .fontWeight(.black)
+                
+                ZStack(alignment: .leading) {
+                    if email.isEmpty {
+                        Text("example@email.com")
+                            .font(.caption)
+                            .foregroundColor(.lightGray)
+                    }
+                    
+                    TextField("", text: $email)
+                }
+                
+                Divider()
+                    .frame(height: 1)
+                    .background(.darkCian)
+                    .padding(.bottom)
+                
+                Text("Password:")
+                    .foregroundColor(.darkCian)
+                    .fontWeight(.black)
+                
+                ZStack(alignment: .leading) {
+                    if password.isEmpty {
+                        Text("******")
+                            .font(.caption)
+                            .foregroundColor(.lightGray)
+                    }
+                    
+                    SecureField("", text: $password)
+                }
+                
+                Divider()
+                    .frame(height: 1)
+                    .background(.darkCian)
+                    .padding(.bottom)
+                
+            }.padding(.horizontal, 77.0)
+        }
     }
 }
 
